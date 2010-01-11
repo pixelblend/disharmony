@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+	<rss version="2.0">
+	<channel>
+		<title>Harmony in my Head</title>
+		<link>http://rollins-archive.com/</link>
+		<description>Henry Rollins' KCRW Show</description>
+		<language>en-us</language>
+		<copyright>2009</copyright>
+		<lastBuildDate><%= Time.now %></lastBuildDate>
+		<ttl>1</ttl>
+		<item>
+			<title>djflsdkjflkjsdl</title>
+			<description>kjlkjlkjlk</description>
+			<pubDate>Wed, 7 Oct 2009 05:17:59 GMT</pubDate>
+			<enclosure url="" length="" type="audio/mpeg"/>
+			</item>
+		</channel>
+	</rss>
