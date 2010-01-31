@@ -12,9 +12,9 @@
 <% @shows.each do |show| %> 
 <item>
   <title><%= @show.title %></title>
-  <enclosure url="<%= @show.path %>" type="audio/mpeg" />
-  <guid><%= @show.path %></guid>
-  <pubDate><%= @show.date %></pubDate>
+  <enclosure url="<%= @show.url %>" type="audio/mpeg" />
+  <guid><%= @show.url %></guid>
+  <pubDate><%= @show.air_date %></pubDate>
 
   <description>
 <![CDATA[

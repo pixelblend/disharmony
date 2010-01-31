@@ -1,8 +1,7 @@
 class Disharmony
-  attr_accessor :leecher, :scraper, :shows
+  attr_accessor :scraper, :shows
 
   def initialize(options={})
-    self.leecher = Leecher.new
     self.scraper = Scraper.new
     self.shows   = Array.new
   end
@@ -19,8 +18,8 @@ class Disharmony
   
   def download_and_tag!
     self.shows = self.shows.collect do |show| 
-      show = self.leecher.download(show)
-      Disharmony::Tagger.tag!(show)
+      show = Leecher.new(show).download
+      Tagger.tag!(show)
     end
   end
   
