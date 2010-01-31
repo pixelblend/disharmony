@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+<channel>
+  <title>Harmony in my Head DEMO</title>
+  <link>http://www.rollins-archive.com</link>
+  <language>en-us</language>
+  <copyright>&#x2117; &amp; &#xA9; KCRW &amp; Henry Rollins</copyright>
+  <itunes:author>Henry Rollins</itunes:author>
+  <itunes:image href="http://localhost/himh.jpg" />
+  <itunes:category text="Good Music" />
+
+ 
+<item>
+  <title>Saturday, January 16, 2010</title>
+  <enclosure url="http://localhost/shows/himh_2010-01-16.mp3" type="audio/mpeg" />
+  <guid>http://localhost/shows/himh_2010-01-16.mp3</guid>
+  <pubDate>Saturday, January 16, 2010 19:00:00 GMT</pubDate>
+
+  <description>
+<![CDATA[
+Track list:
+01. The Damned - Neat Neat Neat
+02. The Cravats - I Am the Dreg
+03. The Fall - Green Eyed Loco Man
+04. Public Image - Public Image
+05. The Ruts - Backbiter
+06. Parliament- Mr. Wiggles
+07. Lee Perry - You Know What I Mean
+08. Sleater-Kinney - Night Light
+09. The Firesign Theatre - The Chinchilla Show
+10. Flipper - Ha Ha Ha
+11. James Brown - There It Is (parts 1&2)
+12. Blonde Redhead - For The Damaged
+13. Casual Dots - Mama's Gonna Make Us A Cake
+14. Harriet Tubman - Asiatic Research
+15. Jimi Hendrix - Remember
+16. Dinosaur Jr. - I Don't Think So
+17. The Castaways - Liar, Liar
+18. Muluqèn Mèllèsè - Wètètié Maré
+19. The Wall - Ghetto
+20. Blondie - X Offender
+21. Wire - Surgeons' Girl
+22. Garbage - #1 Crush
+23. Betty Davis - Don't Call Her No Tramp
+24. Arak - Ni Maan
+25. PJ Harvey - Meet Ze Monsta
+26. The Shangri-Las - Sophisticated Boom Boom
+27. Miriam Makeba - Iphi Ndilela
+28. John Coltrane - Welcome
+]]>
+  </description>
+</item>
+
+</channel>
+</rss>
