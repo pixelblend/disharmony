@@ -1,0 +1,8 @@
+Disharmony - A Rollins Archive Podcasting server
+================================================
+
+I love Henry Rollins' Harmony in My Head radio show. I love RollinsArchive.com even more for putting each show online. But, man, downloading each show and messing around with the files just so I can play it as a Podcast in iTunes is such a bummer.
+
+That's what this little Sinatra server will do. Took more effort to write then to do it manually, but where would the fun in that be?
+
+You'll need ID3-Lib installed for this. <http://id3lib-ruby.rubyforge.org/doc/files/INSTALL.html> 

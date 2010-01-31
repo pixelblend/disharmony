@@ -1,8 +1,7 @@
 require 'lib/disharmony'
 
-get '/' do
-  'hi there'
-  # erb :rss
+get '/' 
+  erb :rss
 end
 
 get '/foo/:bar' do

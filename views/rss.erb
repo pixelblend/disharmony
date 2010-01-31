@@ -1,19 +1,28 @@
-<?xml version="1.0"?>
-	<rss version="2.0">
-	<channel>
-		<title></title>
-		<link></link>
-		<description></description>
-		<language>en-us</language>
-		<copyright></copyright>
-		<lastBuildDate>Wed, 7 Oct 2009 05:17:59 GMT</lastBuildDate>
-		<generator>tdscripts.com Podcast Generator</generator>		<webMaster></webMaster>
-		<ttl>1</ttl>
-		<item>
-			<title></title>
-			<description></description>
-			<pubDate>Wed, 7 Oct 2009 05:17:59 GMT</pubDate>
-			<enclosure url="" length="" type="audio/mpeg"/>
-			</item>
-		</channel>
-	</rss>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+<channel>
+  <title>Harmony in my Head DEMO</title>
+  <link>http://www.rollins-archive.com</link>
+  <language>en-us</language>
+  <copyright>&#x2117; &amp; &#xA9; KCRW &amp; Henry Rollins</copyright>
+  <itunes:author>Henry Rollins</itunes:author>
+  <itunes:image href="http://localhost/himh.jpg" />
+  <itunes:category text="Good Music" />
+
+<% @shows.each do |show| %> 
+<item>
+  <title><%= @show.title %></title>
+  <enclosure url="<%= @show.path %>" type="audio/mpeg" />
+  <guid><%= @show.path %></guid>
+  <pubDate><%= @show.date %></pubDate>
+
+  <description>
+<![CDATA[
+Track list:
+<%= @show.tracklist %>
+]]>
+  </description>
+</item>
+<% end %>
+</channel>
+</rss>
