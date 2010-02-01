@@ -24,10 +24,10 @@ class Disharmony::Leecher
     
     # write zip to temp directory
     file_name = self.show.title.downcase.gsub(' ', '_').gsub(/[^\w\d]/, '')
-    file_path = File.join(File.dirname(__FILE__), '..', 'shows', 'tmp')
+    file_path = File.join(File.dirname(__FILE__), '..', '..')
     
-    self.zip_path = File.join(file_path, file_name+'.zip')
-    self.mp3_path = File.join(file_path, file_name+'.mp3')
+    self.zip_path = File.join(file_path, 'tmp', file_name+'.zip')
+    self.mp3_path = File.join(file_path, 'public',  'shows', file_name+'.mp3')
     
     File::open(zip_path, "wb+") do |zip_file|
       zip_file.write(self.data)
@@ -37,14 +37,14 @@ class Disharmony::Leecher
       case zip_file.entries.size
       when 1
         zip_file.entries.first.extract(mp3_path)
-        self.tag_show(mp3_path)
       else
         raise "Don't know how to handle #{zip_file.entries.size} files in a zip"
       end
     end
     File.unlink(zip_path)
-    File.unlink(mp3_path)
+    #File.unlink(mp3_path)
     
+    show.mp3 = file_name+'.mp3'
     show.downloaded!
     show
   end
