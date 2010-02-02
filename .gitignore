@@ -1,5 +1,5 @@
 tmp/*
-shows/*
+public/shows/*
 *.mp3
 *.db
 *.log
