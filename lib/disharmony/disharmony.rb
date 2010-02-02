@@ -9,7 +9,14 @@ class Disharmony
   def download_latest
     # check for most recent show
     self.shows = self.scraper.latest
-    return false if self.shows.empty?
+    
+    # leech & tag 'em
+    download_and_tag!
+  end
+  
+  def download_recent(count=5)
+    self.shows = self.scraper.recent(count)
+    
     # leech & tag 'em
     download_and_tag!
   end
@@ -17,25 +24,14 @@ class Disharmony
   private
   
   def download_and_tag!
+    if self.shows.empty?
+      Disharmony::Logger.info('No new shows found.')
+      return false
+    end
+
     self.shows = self.shows.collect do |show| 
       show = Leecher.new(show).download
       Tagger.tag!(show)
     end
   end
-  
-=begin    
-  def scrape_latest_shows
-    self.shows.latest = self.scraper.latest_shows
-  end
-
-  def download_show(id=1)
-    active_download = self.shows.latest[id]
-    raise "Selected show #{id} could not be found" if active_download.nil?
-     
-    archive = self.scraper.download_show(active_download)
-    mp3 = self.extract!(archive)
-    self.tag_show(mp3)
-    self.shows.log_downloaded(active_download)
-  end
-=end
 end

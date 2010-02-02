@@ -13,7 +13,7 @@
   <title><%= show.title %></title>
   <enclosure url="<%= request.url + show.url %>" type="audio/mpeg" />
   <guid><%= request.url + show.url %></guid>
-  <pubDate><%= show.air_date %></pubDate>
+  <pubDate><%= show.air_date.rfc2822 %></pubDate>
 
   <description>
 <![CDATA[

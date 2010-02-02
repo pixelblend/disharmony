@@ -20,6 +20,13 @@ class Disharmony::Scraper
     self.connect("/#{self.year}/")
     self.first_show
   end
+
+  def recent(count)
+    count = 1 if count.to_i < 1
+    
+    self.connect("/#{self.year}/")
+    self.nth_shows(count)
+  end
   
   protected
   def connect(path)
@@ -29,8 +36,8 @@ class Disharmony::Scraper
     self.html = Hpricot(self.data)
   end
   
-  def all_shows
-    self.scan_for_shows "//ul[@id='recently'] li a"
+  def nth_shows(count)
+    self.scan_for_shows "//ul[@id='recently'] li:nth-child(-n+#{count}) a"
   end
   
   def first_show
@@ -40,16 +47,21 @@ class Disharmony::Scraper
   def scan_for_shows(selector)
     self.html.search(selector).collect do |link|
       show = Disharmony::Show.new self.extract_show_information(link[:href].gsub("#{self.url}",''))
-      show.save!
       
-      show
-    end
+      show if show.save
+    end.compact
   end
   
   def extract_show_information(url)
     self.connect(url)
     
-    track_list = self.html.search('div.post-body').first.inner_html.gsub('<br />', "\n").gsub(/<\/?[^>]*>/, "").split(/(Track List:)/i)[2].strip
+    post_body = self.html.search('div.post-body').first.inner_html.gsub('<br />', "\n").gsub(/<\/?[^>]*>/, "").strip
+    
+    if post_body.match(/(Track List:)/i).nil?
+      track_list = post_body
+    else
+      track_list = post_body.split(/(Track List:)/i)[2]
+    end
     
     show_title = html.search('h2.date-header').inner_html.strip.split(', ')[1..3].join(' ')
     show_date = Chronic.parse show_title

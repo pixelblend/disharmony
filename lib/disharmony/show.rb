@@ -1,15 +1,16 @@
 require 'dm-core'
+require 'dm-validations'
+require 'dm-aggregates'
+
 DataMapper.setup(:default, Disharmony::Config['db'])
 
 class Disharmony::Show
   include DataMapper::Resource
+  validates_is_unique :title
+  validates_present   :mp3
   
   def self.all_complete
     self.all(:status => :complete, :order => [ :air_date.desc ])
-  end
-  
-  def air_date
-    self[:air_date].rfc2822.to_s
   end
   
   def downloaded!
@@ -34,10 +35,10 @@ class Disharmony::Show
     Disharmony::Config['mp3']['url'] + self.mp3
   end
   
-  storage_names[:default] = 'shows'
+  storage_names[:default] = 'shows'  
   property :id, Serial
   property :title, String
-  property :mp3, String
+  property :mp3, Text
   property :track_list, Text
   property :air_date, Time
   property :status, String

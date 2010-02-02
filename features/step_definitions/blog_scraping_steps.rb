@@ -1,7 +1,7 @@
 # encoding: utf-8
 Given /^I have not downloaded the recent show$/ do
   @disharmony = Disharmony.new
-  assert_equal true, Disharmony::Show.all.empty?
+  assert_equal 0, Disharmony::Show.count
 end
 
 When /^I request the current show$/ do
@@ -10,7 +10,7 @@ When /^I request the current show$/ do
 end
 
 Then /^I should see the latest show$/ do
-  assert_equal 1, @shows.size
+  assert_equal 1, Disharmony::Show.count
 end
 
 Then /^it should be downloaded$/ do
@@ -28,5 +28,10 @@ Then /^available in the correct location$/ do
 end
 
 Then /^it should not be available to download again$/ do
-  pending
+  assert_equal 1, Disharmony::Show.count
+
+  new_shows   = @scraper.latest  
+  
+  assert new_shows.empty?
+  assert_equal 1, Disharmony::Show.count
 end
