@@ -13,6 +13,10 @@ class Disharmony::Show
     self.all(:status => :complete, :order => [ :air_date.desc ])
   end
   
+  def self.find_scraped(title)
+    self.first(:title => title, :status => :scraped)  
+  end
+  
   def downloaded!
     self.status = :downloaded
     self.save

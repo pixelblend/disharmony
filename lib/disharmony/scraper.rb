@@ -64,7 +64,11 @@ class Disharmony::Scraper
     Disharmony::Logger.info "#{midpoint} posts found"
     
     0.upto(midpoint).collect do |x|
-      show = Disharmony::Show.new self.extract_show_information(posts[x], titles[x])
+      attributes = self.extract_show_information(posts[x], titles[x])
+      
+      show   = Disharmony::Show.find_scraped(attributes[:title])
+      show ||= Disharmony::Show.new(attributes)
+      
       show if show.save
     end.compact
   end
