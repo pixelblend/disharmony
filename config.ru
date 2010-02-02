@@ -4,7 +4,7 @@ require 'sinatra'
 require 'web'
 
 Sinatra::Application.default_options.merge!(
-  :run => true,
+  :run => false,
   :env => ENV['RACK_ENV']
 )
 

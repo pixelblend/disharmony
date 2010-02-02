@@ -49,7 +49,7 @@ class Disharmony::Scraper
   def extract_show_information(url)
     self.connect(url)
     
-    track_list = self.html.search('div.post-body').first.inner_html.gsub('<br />', "\n\r").gsub(/<\/?[^>]*>/, "").split(/(Track List:)/i)[2].strip
+    track_list = self.html.search('div.post-body').first.inner_html.gsub('<br />', "\n").gsub(/<\/?[^>]*>/, "").split(/(Track List:)/i)[2].strip
     
     show_title = html.search('h2.date-header').inner_html.strip.split(', ')[1..3].join(' ')
     show_date = Chronic.parse show_title
