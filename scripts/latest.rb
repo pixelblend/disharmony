@@ -1,3 +1,5 @@
+Dir["../vendor/*/lib"].each { |path| $:.unshift path } 
+
 ENV['RACK_ENV'] = 'production'
 
 require 'rubygems'

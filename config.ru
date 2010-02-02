@@ -1,6 +1,6 @@
 Dir["vendor/*/lib"].each { |path| $:.unshift path } 
-require 'sinatra'
 
+require 'sinatra'
 require 'web'
 
 Sinatra::Application.default_options.merge!(
