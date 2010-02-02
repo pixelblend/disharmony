@@ -8,4 +8,4 @@ Sinatra::Application.default_options.merge!(
   :env => ENV['RACK_ENV']
 )
 
-run Sinatra.application
+run Sinatra::Application
