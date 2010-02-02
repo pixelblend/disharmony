@@ -16,10 +16,14 @@ end
 Then /^it should be downloaded$/ do
   Disharmony::Leecher.leech(@shows)
   assert_equal 'downloaded', @shows.first.status
-  assert File.exists?(@shows.first.path)
 end
 
 Then /^it should be tagged correctly$/ do
   Disharmony::Tagger.tag!(@shows.first)
   assert_equal 'complete', @shows.first.status
 end
+
+Then /^available in the correct location$/ do
+  assert File.exists?(@shows.first.path)
+end
+
