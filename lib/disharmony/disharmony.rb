@@ -14,7 +14,7 @@ class Disharmony
     download_and_tag!
   end
   
-  def download_recent(count=5)
+  def download_recent(count=Scraper::MaxShows)
     self.shows = self.scraper.recent(count)
     
     # leech & tag 'em

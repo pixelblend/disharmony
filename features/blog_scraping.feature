@@ -18,5 +18,5 @@ Feature: Blog Scraping
 
   Scenario: Most Recent Shows
     Given I have the latest show
-    When I request the 5 recent shows
+    When I request the recent shows
     Then I should only download the remaining 4 shows

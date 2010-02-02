@@ -39,14 +39,16 @@ Then /^it should not be available to download again$/ do
 end
 
 Given /^I have the latest show$/ do
-  pending # express the regexp above with the code you wish you had
+  assert_equal 1, Disharmony::Show.count
 end
 
-When /^I request the 5 recent shows$/ do
-  pending # express the regexp above with the code you wish you had
+When /^I request the recent shows$/ do   
+  @scraper = Disharmony::Scraper.new(2009)
+
+  @shows = @scraper.recent
 end
 
-Then /^I should only download the remaining 4 shows$/ do
-  pending # express the regexp above with the code you wish you had
+Then /^I should only download the remaining (\d+) shows$/ do |count|
+  assert_equal count.to_i, @shows.size
 end
 

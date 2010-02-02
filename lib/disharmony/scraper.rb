@@ -5,6 +5,7 @@ require 'htmlentities'
 require 'chronic'
 
 class Disharmony::Scraper
+  MaxShows = 5
   attr_accessor :coder, :data, :net, :response, :html, :url, :year
   
   def initialize(year=Date.today.year)
@@ -21,11 +22,9 @@ class Disharmony::Scraper
     self.latest_show
   end
 
-  def recent(count)
-    count = 1 if count.to_i < 1
-    
+  def recent
     self.connect("/#{self.year}/")
-    self.recent_shows(count)
+    self.posted_shows
   end
   
   def for_date(date)
@@ -45,29 +44,31 @@ class Disharmony::Scraper
   end
   
   def posted_shows
-    self.scan_for_shows ""
-  end
-  
-  def recent_shows(count)
-    self.scan_for_shows "//ul[@id='recently'] li:nth-child(-n+#{count}) a"
+    self.scan_for_shows "div[@class='post'], h2[@class='date-header']"
   end
   
   def latest_show
-    self.scan_for_shows "//ul[@id='recently'] li:first-child a"
+    self.scan_for_shows "div[@class='post']:first, h2[@class='date-header']:first"
   end
   
   def scan_for_shows(selector)
-    self.html.search(selector).collect do |link|
-      show = Disharmony::Show.new self.extract_show_information(link[:href].gsub("#{self.url}",''))
-      
+    elements = self.html.search(selector)
+    midpoint = elements.count/2-1
+    
+    #first set of elements are the posts
+    posts  = elements[0..(midpoint)].to_a
+    
+    #and the second set are the header titles
+    titles = elements[(midpoint+1)..(elements.count-1)].to_a
+    
+    0.upto(midpoint).collect do |x|
+      show = Disharmony::Show.new self.extract_show_information(posts[x], titles[x])
       show if show.save
     end.compact
   end
   
-  def extract_show_information(url)
-    self.connect(url)
-    
-    post_body = self.html.search('div.post-body').first.inner_html.gsub('<br />', "\n").gsub(/<\/?[^>]*>/, "").strip
+  def extract_show_information(post, title) 
+    post_body = post.search('div.post-body').first.inner_html.gsub('<br />', "\n").gsub(/<\/?[^>]*>/, "").strip
     
     if post_body.match(/(Track List:)/i).nil?
       # no track list; just set blog post as listing. usually a pledge-drive show
@@ -76,7 +77,7 @@ class Disharmony::Scraper
       track_list = post_body.split(/(Track List:)/i)[2]
     end
     
-    show_title = html.search('h2.date-header').inner_html.strip.split(', ')[1..3].join(' ')
+    show_title = title.inner_html.strip.split(', ')[1..3].join(' ')
     show_date = Chronic.parse show_title
     
     show_info = Hash.new
