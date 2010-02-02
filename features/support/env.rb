@@ -1,4 +1,5 @@
 ENV['RACK_ENV'] = 'test'
+ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
 
 require 'cucumber/formatter/unicode'
 require 'lib/disharmony'
