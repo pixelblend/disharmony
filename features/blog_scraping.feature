@@ -7,18 +7,16 @@ Feature: Blog Scraping
   And download the show
   And convert the show into iTunes-friendly podcast format
 
-  Scenario: Entries List
-    Given I have not downloaded the recent show
-    When I request the current show
+  Scenario: Latest Show
+    Given I have not downloaded any shows
+    When I request the latest show
     Then I should see the latest show
     And it should be downloaded
     And it should be tagged correctly
     And available in the correct location
     And it should not be available to download again
 
-#  Scenario: Show Downloads
-#    Given I have a list of recent shows
-#    When I download the latest show
-#    Then it should save the archive file
-#    And extract the mp3
-#    And add Podcast ID3 tags
+  Scenario: Most Recent Shows
+    Given I have the latest show
+    When I request the 5 recent shows
+    Then I should only download the remaining 4 shows

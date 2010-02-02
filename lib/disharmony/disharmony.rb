@@ -20,6 +20,13 @@ class Disharmony
     # leech & tag 'em
     download_and_tag!
   end
+  
+  def download_for_date(date)
+    self.shows = self.scraper.for_date(date)
+    
+    # leech & tag 'em
+    download_and_tag!
+  end
 
   private
   

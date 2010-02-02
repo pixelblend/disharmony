@@ -18,14 +18,22 @@ class Disharmony::Scraper
   
   def latest
     self.connect("/#{self.year}/")
-    self.first_show
+    self.latest_show
   end
 
   def recent(count)
     count = 1 if count.to_i < 1
     
     self.connect("/#{self.year}/")
-    self.nth_shows(count)
+    self.recent_shows(count)
+  end
+  
+  def for_date(date)
+    year  = date.strftime('%Y')
+    month = date.strftime('%m')
+    
+    self.connect("/#{year}/#{year}_#{month}_01_archive.html")
+    self.posted_shows
   end
   
   protected
@@ -36,11 +44,15 @@ class Disharmony::Scraper
     self.html = Hpricot(self.data)
   end
   
-  def nth_shows(count)
+  def posted_shows
+    self.scan_for_shows ""
+  end
+  
+  def recent_shows(count)
     self.scan_for_shows "//ul[@id='recently'] li:nth-child(-n+#{count}) a"
   end
   
-  def first_show
+  def latest_show
     self.scan_for_shows "//ul[@id='recently'] li:first-child a"
   end
   
@@ -58,6 +70,7 @@ class Disharmony::Scraper
     post_body = self.html.search('div.post-body').first.inner_html.gsub('<br />', "\n").gsub(/<\/?[^>]*>/, "").strip
     
     if post_body.match(/(Track List:)/i).nil?
+      # no track list; just set blog post as listing. usually a pledge-drive show
       track_list = post_body
     else
       track_list = post_body.split(/(Track List:)/i)[2]

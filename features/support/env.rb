@@ -8,5 +8,3 @@ require 'test/unit'
 require 'ruby-debug'
 require 'mocha'
 include Test::Unit::Assertions
-
-Disharmony::Show.auto_migrate!

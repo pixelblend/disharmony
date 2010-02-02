@@ -1,10 +1,12 @@
 # encoding: utf-8
-Given /^I have not downloaded the recent show$/ do
+Given /^I have not downloaded any shows$/ do
+  Disharmony::Show.auto_migrate!
+
   @disharmony = Disharmony.new
   assert_equal 0, Disharmony::Show.count
 end
 
-When /^I request the current show$/ do
+When /^I request the latest show$/ do
   @scraper = Disharmony::Scraper.new(2009)
   @shows   = @scraper.latest
 end
@@ -35,3 +37,16 @@ Then /^it should not be available to download again$/ do
   assert new_shows.empty?
   assert_equal 1, Disharmony::Show.count
 end
+
+Given /^I have the latest show$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^I request the 5 recent shows$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should only download the remaining 4 shows$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
