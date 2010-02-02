@@ -1,4 +1,4 @@
-require 'rubygems'
+Dir["vendor/*/lib"].each { |path| $:.unshift path } 
 require 'sinatra'
 
 require 'web'
