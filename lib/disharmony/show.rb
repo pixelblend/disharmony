@@ -31,7 +31,7 @@ class Disharmony::Show
   end
   
   def url
-    Disharmony::Config['server_host'] + Disharmony::Config['mp3']['url'] + self.mp3
+    Disharmony::Config['mp3']['url'] + self.mp3
   end
   
   storage_names[:default] = 'shows'
