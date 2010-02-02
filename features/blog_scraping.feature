@@ -14,6 +14,7 @@ Feature: Blog Scraping
     And it should be downloaded
     And it should be tagged correctly
     And available in the correct location
+    And it should not be available to download again
 
 #  Scenario: Show Downloads
 #    Given I have a list of recent shows

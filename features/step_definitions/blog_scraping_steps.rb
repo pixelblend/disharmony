@@ -26,3 +26,7 @@ end
 Then /^available in the correct location$/ do
   assert File.exists?(@shows.first.path)
 end
+
+Then /^it should not be available to download again$/ do
+  pending
+end
