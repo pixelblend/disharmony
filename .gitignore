@@ -1,4 +1,4 @@
-tmp/*
-public/shows/*
-db/*
-log/*
+tmp/*.zip
+public/shows/*.mp3
+db/*.db
+log/*.log
