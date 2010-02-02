@@ -21,7 +21,7 @@ class Disharmony
   end
   
   def download_for_date(date)
-    self.shows = Scraper.new(date.year).for_date(date)
+    self.shows = Scraper.new.for_date(date)
     
     # leech & tag 'em
     download_and_tag!
