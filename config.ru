@@ -1,5 +1,3 @@
-ROOT = File.expand_path(File.dirname(__FILE__))
-
 Dir["vendor/*/lib"].each { |path| $:.unshift path } 
 
 require 'sinatra'
