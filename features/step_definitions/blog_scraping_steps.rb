@@ -7,7 +7,7 @@ Given /^I have not downloaded any shows$/ do
 end
 
 When /^I request the latest show$/ do
-  @scraper = Disharmony::Scraper.new(2009)
+  @scraper = Disharmony::Scraper.new
   @shows   = @scraper.latest
 end
 
@@ -43,7 +43,7 @@ Given /^I have the latest show$/ do
 end
 
 When /^I request the recent shows$/ do   
-  @scraper = Disharmony::Scraper.new(2009)
+  @scraper = Disharmony::Scraper.new
 
   @shows = @scraper.recent
 end

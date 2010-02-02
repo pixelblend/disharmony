@@ -5,11 +5,9 @@ require 'htmlentities'
 require 'chronic'
 
 class Disharmony::Scraper
-  MaxShows = 5
-  attr_accessor :coder, :data, :net, :response, :html, :url, :year
+  attr_accessor :coder, :data, :net, :response, :html
   
-  def initialize(year=Date.today.year)
-    self.year = year
+  def initialize
     uri = URI.parse(Disharmony::Config['source_host'])
     Disharmony::Logger.info "connecting to #{uri.host}"
 
@@ -18,20 +16,22 @@ class Disharmony::Scraper
   end
   
   def latest
-    self.connect("/#{self.year}/")
+    self.connect("/#{Date.today.year}/")
     self.latest_show
   end
-
+  
   def recent
-    self.connect("/#{self.year}/")
+    self.connect("/#{Date.today.year}/")
     self.posted_shows
   end
   
   def for_date(date)
+    return false unless date.is_a?(Date)
+    
     year  = date.strftime('%Y')
     month = date.strftime('%m')
     
-    self.connect("/#{year}/#{year}_#{month}_01_archive.html")
+    self.connect("/#{year}/archive/#{year}_#{month}_01_archive.html")
     self.posted_shows
   end
   
@@ -61,6 +61,8 @@ class Disharmony::Scraper
     #and the second set are the header titles
     titles = elements[(midpoint+1)..(elements.count-1)].to_a
     
+    Disharmony::Logger.info "#{midpoint} posts found"
+    
     0.upto(midpoint).collect do |x|
       show = Disharmony::Show.new self.extract_show_information(posts[x], titles[x])
       show if show.save
@@ -80,10 +82,12 @@ class Disharmony::Scraper
     show_title = title.inner_html.strip.split(', ')[1..3].join(' ')
     show_date = Chronic.parse show_title
     
+    Disharmony::Logger.info "Scraping info for #{show_title}"
+    
     show_info = Hash.new
     
     show_info[:title]      = show_title
-    show_info[:mp3]        = html.search('div.post-body a').first[:href]
+    show_info[:mp3]        = post.search('div.post-body a').first[:href]
     show_info[:track_list] = self.coder.decode track_list
     show_info[:status]     = :scraped
     show_info[:air_date]   = show_date

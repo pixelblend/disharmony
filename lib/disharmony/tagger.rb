@@ -2,7 +2,7 @@ require 'id3lib'
 
 class Disharmony::Tagger
   def self.tag!(show)
-    Disharmony::Logger.info 'Tagging show'
+    Disharmony::Logger.info "Tagging show #{show.title}"
     
     tag = ID3Lib::Tag.new(show.path, ID3Lib::V2)
     tag.artist = Disharmony::Config['show_info']['title']
@@ -26,8 +26,6 @@ class Disharmony::Tagger
     tag << cover
 
     tag.update!
-
-    Disharmony::Logger.info 'Tagging complete'
 
     show.tagged!
     show

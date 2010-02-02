@@ -1,7 +1,5 @@
 require 'zip/zip'
 require 'zip/zipfilesystem'
-require 'net/http'
-require 'uri'
 
 class Disharmony::Leecher
   attr_accessor :response, :show, :data, :mp3_path, :zip_path
@@ -18,7 +16,6 @@ class Disharmony::Leecher
   end
   
   def download
-    uri = URI.parse(Disharmony::Config['source_host'])
     # write zip to temp directory
     file_name = self.show.title.downcase.gsub(' ', '_').gsub(/[^\w\d]/, '')
     file_path = File.join(File.dirname(__FILE__), '..', '..')
@@ -43,8 +40,6 @@ class Disharmony::Leecher
     ensure
       File.unlink(zip_path)
     end
-    
-    Disharmony::Logger.info 'Show downloaded'
     
     show.mp3 = file_name+'.mp3'
     show.downloaded!
