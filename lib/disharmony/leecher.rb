@@ -19,21 +19,23 @@ class Disharmony::Leecher
   
   def download
     uri = URI.parse(Disharmony::Config['source_host'])
-
-    Disharmony::Logger.info "Downloading #{show.mp3}"
-    self.response, self.data = Net::HTTP.new(uri.host, uri.port).get(show.mp3, nil)
-    
     # write zip to temp directory
     file_name = self.show.title.downcase.gsub(' ', '_').gsub(/[^\w\d]/, '')
     file_path = File.join(File.dirname(__FILE__), '..', '..')
     
     self.zip_path = File.join(file_path, 'tmp', file_name+'.zip')
     self.mp3_path = File.join(file_path, 'public',  'shows', file_name+'.mp3')
-    
-    Disharmony::Logger.info 'Writing zip'
 
-    File::open(zip_path, "wb+") do |zip_file|
-      zip_file.write(self.data)
+    Disharmony::Logger.info "Downloading #{show.mp3}"
+    begin
+      self.response, self.data = Net::HTTP.new(uri.host, uri.port).get(show.mp3, nil)
+      Disharmony::Logger.info 'Writing zip'
+  
+      File::open(zip_path, "wb+") do |zip_file|
+       zip_file.write(self.data)
+     end
+    rescue NoMemoryError
+      `wget #{show.mp3} #{zip_path}`
     end
     
     Disharmony::Logger.info 'Extracting zip'
