@@ -87,7 +87,7 @@ class Disharmony::Scraper
     show_info = Hash.new
     
     show_info[:title]      = show_title
-    show_info[:mp3]        = post.search('div.post-body a').first[:href]
+    show_info[:mp3]        = post.search('div.post-body a').first[:href] rescue nil
     show_info[:track_list] = self.coder.decode track_list
     show_info[:status]     = :scraped
     show_info[:air_date]   = show_date
