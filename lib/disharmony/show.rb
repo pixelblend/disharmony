@@ -44,3 +44,4 @@ class Disharmony::Show
 end
 
 Disharmony::Show.auto_upgrade!
+

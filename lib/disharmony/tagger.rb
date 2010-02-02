@@ -26,8 +26,9 @@ class Disharmony::Tagger
     tag << cover
 
     tag.update!
+
     Disharmony::Logger.info 'Tagging complete'
-    
+
     show.tagged!
     show
   end

@@ -19,7 +19,7 @@ class Disharmony::Leecher
   
   def download
     uri = URI.parse(Disharmony::Config['source_host'])
-    
+
     Disharmony::Logger.info "Downloading #{show.mp3}"
     self.response, self.data = Net::HTTP.new(uri.host, uri.port).get(show.mp3, nil)
     
@@ -31,6 +31,7 @@ class Disharmony::Leecher
     self.mp3_path = File.join(file_path, 'public',  'shows', file_name+'.mp3')
     
     Disharmony::Logger.info 'Writing zip'
+
     File::open(zip_path, "wb+") do |zip_file|
       zip_file.write(self.data)
     end

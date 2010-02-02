@@ -10,8 +10,8 @@ class Disharmony::Scraper
   def initialize(year=Date.today.year)
     self.year = year
     uri = URI.parse(Disharmony::Config['source_host'])
-    
     Disharmony::Logger.info "connecting to #{uri.host}"
+
     self.net = Net::HTTP.new(uri.host, uri.port)
     self.coder = HTMLEntities.new
   end
@@ -24,6 +24,7 @@ class Disharmony::Scraper
   protected
   def connect(path)
     Disharmony::Logger.info "connecting to #{path}" 
+
     self.response, self.data = self.net.get(path, nil)
     self.html = Hpricot(self.data)
   end

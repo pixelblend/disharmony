@@ -1,4 +1,4 @@
-require 'lib/disharmony'
+require 'disharmony'
 
 get '/' do
   @shows = Disharmony::Show.all_complete
