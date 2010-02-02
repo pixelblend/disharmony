@@ -43,4 +43,4 @@ class Disharmony::Show
   property :status, String
 end
 
-Disharmony::Show.auto_migrate!
+Disharmony::Show.auto_upgrade!

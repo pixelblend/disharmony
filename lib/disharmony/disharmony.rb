@@ -11,7 +11,7 @@ class Disharmony
     self.shows = self.scraper.latest
     return false if self.shows.empty?
     # leech & tag 'em
-    self.download_and_tag!
+    download_and_tag!
   end
 
   private

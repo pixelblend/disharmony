@@ -8,18 +8,17 @@
   <itunes:author>Henry Rollins</itunes:author>
   <itunes:image href="http://localhost/himh.jpg" />
   <itunes:category text="Good Music" />
-
 <% @shows.each do |show| %> 
 <item>
-  <title><%= @show.title %></title>
-  <enclosure url="<%= @show.url %>" type="audio/mpeg" />
-  <guid><%= @show.url %></guid>
-  <pubDate><%= @show.air_date %></pubDate>
+  <title><%= show.title %></title>
+  <enclosure url="<%= show.url %>" type="audio/mpeg" />
+  <guid><%= show.url %></guid>
+  <pubDate><%= show.air_date %></pubDate>
 
   <description>
 <![CDATA[
 Track list:
-<%= @show.tracklist %>
+<%= show.track_list %>
 ]]>
   </description>
 </item>

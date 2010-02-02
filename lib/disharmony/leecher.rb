@@ -19,8 +19,9 @@ class Disharmony::Leecher
   
   def download
     uri = URI.parse(Disharmony::Config['source_host'])
-    self.response, self.data = Net::HTTP.new(uri.host, uri.port).get(show.mp3, nil)
     
+    Disharmony::Logger.info "Downloading #{show.mp3}"
+    self.response, self.data = Net::HTTP.new(uri.host, uri.port).get(show.mp3, nil)
     
     # write zip to temp directory
     file_name = self.show.title.downcase.gsub(' ', '_').gsub(/[^\w\d]/, '')
@@ -29,20 +30,27 @@ class Disharmony::Leecher
     self.zip_path = File.join(file_path, 'tmp', file_name+'.zip')
     self.mp3_path = File.join(file_path, 'public',  'shows', file_name+'.mp3')
     
+    Disharmony::Logger.info 'Writing zip'
     File::open(zip_path, "wb+") do |zip_file|
       zip_file.write(self.data)
     end
     
-    Zip::ZipFile.open(zip_path) do |zip_file|
-      case zip_file.entries.size
-      when 1
-        zip_file.entries.first.extract(mp3_path)
-      else
-        raise "Don't know how to handle #{zip_file.entries.size} files in a zip"
+    Disharmony::Logger.info 'Extracting zip'
+    begin
+      Zip::ZipFile.open(zip_path) do |zip_file|
+        zip_file.each do |entry|
+          unless (entry.name =~ /.mp3$/).nil?
+            zip_file.extract(entry, mp3_path)
+          end
+        end
       end
+    rescue Zip::ZipDestinationFileExistsError => e
+      Disharmony::Logger.info "#{e}, skipping"
+    ensure
+      File.unlink(zip_path)
     end
-    File.unlink(zip_path)
-    #File.unlink(mp3_path)
+    
+    Disharmony::Logger.info 'Show downloaded'
     
     show.mp3 = file_name+'.mp3'
     show.downloaded!

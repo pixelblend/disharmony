@@ -1,6 +1,6 @@
-require 'disharmony'
+require 'lib/disharmony'
 
-get '/' 
+get '/' do
   @shows = Disharmony::Show.all_complete
   erb :rss
 end

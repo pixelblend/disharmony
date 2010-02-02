@@ -1,3 +1,5 @@
+require 'net/http'
+require 'uri'
 require 'hpricot'
 require 'htmlentities'
 require 'chronic'
@@ -8,7 +10,8 @@ class Disharmony::Scraper
   def initialize(year=Date.today.year)
     self.year = year
     uri = URI.parse(Disharmony::Config['source_host'])
-
+    
+    Disharmony::Logger.info "connecting to #{uri.host}"
     self.net = Net::HTTP.new(uri.host, uri.port)
     self.coder = HTMLEntities.new
   end
@@ -20,6 +23,7 @@ class Disharmony::Scraper
   
   protected
   def connect(path)
+    Disharmony::Logger.info "connecting to #{path}" 
     self.response, self.data = self.net.get(path, nil)
     self.html = Hpricot(self.data)
   end
@@ -46,8 +50,8 @@ class Disharmony::Scraper
     
     track_list = self.html.search('div.post-body').first.inner_html.gsub('<br />', "\n\r").gsub(/<\/?[^>]*>/, "").split(/(Track List:)/i)[2].strip
     
-    show_title = html.search('h2.date-header').inner_html.strip
-    show_date = Chronic.parse show_title.split(', ')[1..3].join(' ')
+    show_title = html.search('h2.date-header').inner_html.strip.split(', ')[1..3].join(' ')
+    show_date = Chronic.parse show_title
     
     show_info = Hash.new
     
