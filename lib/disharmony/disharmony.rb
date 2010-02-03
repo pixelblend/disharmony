@@ -38,6 +38,7 @@ class Disharmony
     self.shows = self.shows.collect do |show| 
       show = Leecher.new(show).download
       Tagger.tag!(show)
+      Disharmony::Logger.info("#{show.title} completed.")
     end
   end
 end

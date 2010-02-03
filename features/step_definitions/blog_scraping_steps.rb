@@ -48,6 +48,10 @@ When /^I request the recent shows$/ do
   @shows = @scraper.recent
 end
 
+When /^I scrape the (.*) page$/ do |page|
+  stub_scraped_page(page)
+end
+
 Then /^I should only download the remaining (\d+) shows$/ do |count|
   assert_equal count.to_i, @shows.size
 end

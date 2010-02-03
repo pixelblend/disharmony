@@ -9,7 +9,8 @@ Feature: Podcasting
 
   Scenario: Latest Show
     Given I have not downloaded any shows
-    When I request the latest show
+    When I scrape the 2009 page
+    And  I request the latest show
     Then I should see the latest show
     And it should be downloaded
     And it should be tagged correctly
@@ -18,5 +19,6 @@ Feature: Podcasting
 
   Scenario: Most Recent Shows
     Given I have the latest show
-    When I request the recent shows
+    When I scrape the 2009 page
+    And  I request the recent shows
     Then I should only download the remaining 4 shows

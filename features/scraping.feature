@@ -6,11 +6,11 @@ Feature: Page scraping
   And create show entities
 
   Scenario: A post with no zip file
-    Given I scrape the no-zip page
-    When I find the first post
+    When I scrape the no-zip page
+    And I find the first post
     Then I should not create a show 
   
   Scenario: A post with multiple zip files
-    Given I scrape multiple-zip page
-    When I find the first post
+    When I scrape multiple-zip page
+    And I find the first post
     Then I should create a show with multiple zip files
