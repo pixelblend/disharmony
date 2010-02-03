@@ -7,10 +7,11 @@ Feature: Page scraping
 
   Scenario: A post with no zip file
     When I scrape the no-zip page
-    And I find the first post
+    And I find post #1
     Then I should not create a show 
   
   Scenario: A post with multiple zip files
-    When I scrape multiple-zip page
-    And I find the first post
-    Then I should create a show with multiple zip files
+    When I scrape the multiple-zip page
+    And I find post #1
+    Then I should create a show
+    And with multiple zip files
