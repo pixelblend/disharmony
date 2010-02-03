@@ -6,11 +6,6 @@ Given /^I have not downloaded any shows$/ do
   assert_equal 0, Disharmony::Show.count
 end
 
-When /^I request the latest show$/ do
-  @scraper = Disharmony::Scraper.new
-  @shows   = @scraper.latest
-end
-
 Then /^I should see the latest show$/ do
   assert_equal 1, Disharmony::Show.count
 end
@@ -40,16 +35,6 @@ end
 
 Given /^I have the latest show$/ do
   assert_equal 1, Disharmony::Show.count
-end
-
-When /^I request the recent shows$/ do   
-  @scraper = Disharmony::Scraper.new
-
-  @shows = @scraper.recent
-end
-
-When /^I scrape the (.*) page$/ do |page|
-  stub_scraped_page(page)
 end
 
 Then /^I should only download the remaining (\d+) shows$/ do |count|
