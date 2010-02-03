@@ -1,5 +1,5 @@
 # language: en
-Feature: Blog Scraping
+Feature: Podcasting
   In order to select shows to download
   I want to see a list of the latest shows
   And display track list information
