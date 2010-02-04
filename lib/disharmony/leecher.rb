@@ -23,7 +23,7 @@ class Disharmony::Leecher
     self.zip_path = File.join(self.file_path, 'tmp', file_name+'.zip')
     self.mp3_path = File.join(self.file_path, 'public',  'shows', file_name+'.mp3')
 
-    Disharmony::Logger.info "Downloading #{show.mp3}"
+    Disharmony::Logger.info "Downloading #{show.mp3} to #{zip_path}"
     wget show.mp3, zip_path
     
     Disharmony::Logger.info 'Extracting zip'
