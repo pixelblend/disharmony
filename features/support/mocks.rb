@@ -1,17 +1,22 @@
-def mocks_path
-  File.join(File.dirname(__FILE__), 'mocks')
+def mocks_path(file)
+  File.join(File.dirname(__FILE__), 'mocks', file)
+end
+
+def mock_download_path(file='')
+  File.join(File.dirname(__FILE__), '..', '..', 'tmp', 'test', file)
 end
 
 def stub_archive(file)
-  test_zip   = File.join(mocks_path, file)
+  test_zip   = mocks_path(file)
   
+  Disharmony::Leecher.any_instance.stubs(:file_path).returns(mock_download_path)
   Disharmony::Leecher.any_instance.stubs(:wget).returns(true)
   Disharmony::Leecher.any_instance.stubs(:zip_path).returns(test_zip)
   File.stubs(:unlink).with(test_zip).returns(true)
 end
 
 def stub_scraped_page(file)
-  Net::HTTP.any_instance.stubs(:get).returns(['', File.read(File.join(mocks_path, "#{file}.html"))])
+  Net::HTTP.any_instance.stubs(:get).returns(['', File.read(mocks_path("#{file}.html"))])
 end
 
 def stub_show(new_attributes={})
