@@ -69,7 +69,7 @@ class Disharmony::Scraper
       show   = Disharmony::Show.find_scraped(attributes[:title])
       show ||= Disharmony::Show.new(attributes)
       
-      show if show.save
+      show if show.scraped!
     end.compact
   end
   
@@ -91,11 +91,27 @@ class Disharmony::Scraper
     show_info = Hash.new
     
     show_info[:title]      = show_title
-    show_info[:mp3]        = post.search('div.post-body a').first[:href] rescue nil
+    show_info[:mp3]        = extract_zips_from_post(post)
     show_info[:track_list] = self.coder.decode track_list
-    show_info[:status]     = :scraped
     show_info[:air_date]   = show_date
     
     show_info
+  end
+  
+  def extract_zips_from_post(post)
+    show_zips = Array.new
+
+    post.search('div.post-body a').collect do |link|
+      show_zips << link[:href] if link[:href].include?('.zip')
+    end
+    
+    case show_zips.size
+      when 0
+        ''
+      when 1
+        show_zips.first
+      else
+        show_zips.join('|')
+    end
   end
 end

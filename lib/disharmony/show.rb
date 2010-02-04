@@ -17,6 +17,12 @@ class Disharmony::Show
     self.first(:title => title, :status => :scraped)  
   end
   
+  def scraped!
+    self.status = :scraped
+    self.multipart = true if self.mp3.include?('|')
+    self.save
+  end
+  
   def downloaded!
     self.status = :downloaded
     self.save
@@ -43,6 +49,7 @@ class Disharmony::Show
   property :id, Serial
   property :title, String
   property :mp3, Text
+  property :multipart, Boolean, :default => false
   property :track_list, Text
   property :air_date, Time
   property :status, String
