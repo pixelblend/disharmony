@@ -105,7 +105,7 @@ class Disharmony::Scraper
       show_zips << link[:href] if link[:href].include?('.zip')
     end
     
-    case show_zips.size
+    case show_zips.uniq!.size
       when 0
         ''
       when 1
