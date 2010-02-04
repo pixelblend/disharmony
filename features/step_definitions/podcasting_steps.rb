@@ -10,11 +10,6 @@ Then /^I should see the latest show$/ do
   assert_equal 1, Disharmony::Show.count
 end
 
-Then /^it should be downloaded$/ do
-  Disharmony::Leecher.leech(@shows)
-  assert_equal 'downloaded', @shows.first.status
-end
-
 Then /^it should be tagged correctly$/ do
   Disharmony::Tagger.tag!(@shows.first)
   assert_equal 'complete', @shows.first.status
