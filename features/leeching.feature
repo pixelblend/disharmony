@@ -11,6 +11,6 @@ Feature: File Downloading
     Then I should have the mp3 broadcast
   
   Scenario: Multiple zip archives
-    Given I download a show with multiple zip archive
+    Given I download a show with a multiple zip archive
     When I extract the zip archive
     Then I should have a combined mp3 broadcast

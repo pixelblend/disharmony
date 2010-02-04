@@ -13,3 +13,18 @@ end
 def stub_scraped_page(file)
   Net::HTTP.any_instance.stubs(:get).returns(['', File.read(File.join(mocks_path, "#{file}.html"))])
 end
+
+def stub_show(new_attributes={})
+  attributes = {
+    :title => Time.now.to_s,
+    :mp3 => 'mp3_location.mp3',
+    :status => 'scraped',
+    :air_date => Time.now
+  }
+  
+  show = Disharmony::Show.new
+  show.attributes = attributes.merge(new_attributes)
+  show.save
+  
+  show
+end

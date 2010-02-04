@@ -8,6 +8,7 @@ end
 
 Then /^I should see the latest show$/ do
   assert_equal 1, Disharmony::Show.count
+  assert_equal false, Disharmony::Show.get(1).multipart?
 end
 
 Then /^it should be tagged correctly$/ do
