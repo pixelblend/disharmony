@@ -11,6 +11,6 @@ require File.join(ROOT, 'lib', 'disharmony')
 
 Disharmony::Logger = Logger.new(STDOUT)
 
-date = Date.new(2009,12)
+date = Date.new(2007,1)
 
 Disharmony.new.download_for_date(date)

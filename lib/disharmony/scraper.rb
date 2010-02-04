@@ -31,7 +31,10 @@ class Disharmony::Scraper
     year  = date.strftime('%Y')
     month = date.strftime('%m')
     
-    self.connect("/#{year}/archive/#{year}_#{month}_01_archive.html")
+    #little url glitch for older shows
+    archive = '/archive' if date.year >= 2008
+    
+    self.connect("/#{year}#{archive}/#{year}_#{month}_01_archive.html")
     self.posted_shows
   end
   
@@ -44,22 +47,22 @@ class Disharmony::Scraper
   end
   
   def posted_shows
-    self.scan_for_shows "div[@class='post'], h2[@class='date-header']"
+    self.scan_for_shows "h2[@class='date-header'], div[@class='post']"
   end
   
   def latest_show
-    self.scan_for_shows "div[@class='post']:first, h2[@class='date-header']:first"
+    self.scan_for_shows "h2[@class='date-header']:first, div[@class='post']:first"
   end
   
   def scan_for_shows(selector)
     elements = self.html.search(selector)
     midpoint = elements.count/2-1
     
-    #first set of elements are the posts
-    posts  = elements[0..(midpoint)].to_a
+    #first set of elements are the titles
+    titles  = elements[0..(midpoint)].to_a
     
-    #and the second set are the header titles
-    titles = elements[(midpoint+1)..(elements.count-1)].to_a
+    #and the second set are the posts
+    posts = elements[(midpoint+1)..(elements.count-1)].to_a
     
     Disharmony::Logger.info "#{midpoint} posts found"
     
@@ -80,7 +83,7 @@ class Disharmony::Scraper
       # no track list; just set blog post as listing. usually a pledge-drive show
       track_list = post_body
     else
-      track_list = post_body.split(/(Track List:)/i)[2]
+      track_list = post_body.split(/(Track List:)/i)[2].strip
     end
     
     show_title = title.inner_html.strip.split(', ')[1..3].join(' ')

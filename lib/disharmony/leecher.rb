@@ -23,22 +23,24 @@ class Disharmony::Leecher
     self.zip_path = File.join(self.file_path, 'tmp', file_name+'.zip')
     self.mp3_path = File.join(self.file_path, 'public',  'shows', file_name+'.mp3')
 
-    Disharmony::Logger.info "Downloading #{show.mp3} to #{zip_path}"
-    wget show.mp3, zip_path
-    
-    Disharmony::Logger.info 'Extracting zip'
-    begin
-      Zip::ZipFile.open(zip_path) do |zip_file|
-        zip_file.each do |entry|
-          unless (entry.name =~ /^[a-zA-Z0-9]+(.*).mp3$/).nil?
-            zip_file.extract(entry, mp3_path)
-          end
-        end
+    if self.show.multipart?
+      # download each part of the archive
+      show.mp3.split('|').each_with_index do |part, count|
+        tmp_file = File.join(self.file_path, 'tmp', "#{file_name}#{count}.mp3")
+        get_and_extract(part, tmp_file)
       end
-    rescue Zip::ZipDestinationFileExistsError => e
-      Disharmony::Logger.info "#{e}, skipping"
-    ensure
-      File.unlink(zip_path)
+      
+      #join files together
+      mp3_parts = File.join(self.file_path, 'tmp', "#{file_name}*.mp3")
+      
+      #due to memory concerns, we're backtickin' on the shell again
+      `cat #{mp3_parts} > #{mp3_path}`
+      
+      Dir[mp3_parts].each do |part|
+        File.unlink(part)
+      end
+    else
+      get_and_extract(show.mp3)
     end
     
     show.mp3 = file_name+'.mp3'
@@ -48,7 +50,30 @@ class Disharmony::Leecher
   
   private
   
+  def get_and_extract(source, destination=self.mp3_path)
+    Disharmony::Logger.info "Downloading #{source} to #{zip_path}"
+    wget source, zip_path
+    extract_zip!(destination)
+  end
+  
   def wget(url, output)
     `wget #{url} --output-document=#{output}`
+  end
+  
+  def extract_zip!(destination)
+    Disharmony::Logger.info 'Extracting zip'
+    begin
+      Zip::ZipFile.open(zip_path) do |zip_file|
+        zip_file.each do |entry|
+          unless (entry.name =~ /^[a-zA-Z0-9]+(.*).mp3$/).nil?
+            zip_file.extract(entry, destination)
+          end
+        end
+      end
+    rescue Zip::ZipDestinationFileExistsError => e
+      Disharmony::Logger.info "#{e}, skipping"
+    ensure
+      File.unlink(zip_path)
+    end
   end
 end
