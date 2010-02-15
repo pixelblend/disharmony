@@ -2,3 +2,4 @@ tmp/*.zip
 public/shows/*.mp3
 db/*.db
 log/*.log
+vendor/bundler_gems
