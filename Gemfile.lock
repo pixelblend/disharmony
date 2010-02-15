@@ -1,0 +1,123 @@
+--- 
+specs: 
+- term-ansicolor: 
+    version: 1.0.4
+- builder: 
+    version: 2.1.2
+- hpricot: 
+    version: 0.8.2
+- json_pure: 
+    version: 1.2.0
+- extlib: 
+    version: 0.9.14
+- linecache: 
+    version: "0.43"
+- chronic: 
+    version: 0.2.3
+- rack: 
+    version: 1.1.0
+- htmlentities: 
+    version: 4.2.0
+- id3lib-ruby: 
+    version: 0.5.0
+- sinatra: 
+    version: 0.9.4
+- polyglot: 
+    version: 0.3.0
+- dm-core: 
+    version: 0.10.2
+- dm-aggregates: 
+    version: 0.10.2
+- dm-validations: 
+    version: 0.10.2
+- rake: 
+    version: 0.8.7
+- mocha: 
+    version: 0.9.8
+- gemcutter: 
+    version: 0.3.0
+- addressable: 
+    version: 2.1.1
+- diff-lcs: 
+    version: 1.1.2
+- data_objects: 
+    version: 0.10.1
+- do_sqlite3: 
+    version: 0.10.1.1
+- rubyforge: 
+    version: 2.0.3
+- hoe: 
+    version: 2.5.0
+- treetop: 
+    version: 1.4.3
+- cucumber: 
+    version: 0.6.2
+- columnize: 
+    version: 0.3.1
+- ruby-debug-base: 
+    version: 0.10.3
+- rubyzip: 
+    version: 0.9.4
+- ruby-debug: 
+    version: 0.10.3
+hash: 545e9b8284164c678f2ce9d765f6712e72206e31
+sources: 
+- Rubygems: 
+    uri: http://gemcutter.org
+dependencies: 
+  ruby-debug: 
+    version: ">= 0"
+    group: 
+    - :default
+  rubyzip: 
+    version: ">= 0"
+    group: 
+    - :default
+  data_objects: 
+    version: ">= 0"
+    group: 
+    - :default
+  dm-core: 
+    version: ">= 0"
+    group: 
+    - :default
+  mocha: 
+    version: ">= 0"
+    group: 
+    - :default
+  id3lib-ruby: 
+    version: ">= 0"
+    group: 
+    - :default
+  dm-validations: 
+    version: ">= 0"
+    group: 
+    - :default
+  sinatra: 
+    version: ">= 0"
+    group: 
+    - :default
+  htmlentities: 
+    version: ">= 0"
+    group: 
+    - :default
+  chronic: 
+    version: ">= 0"
+    group: 
+    - :default
+  dm-aggregates: 
+    version: ">= 0"
+    group: 
+    - :default
+  do_sqlite3: 
+    version: ">= 0"
+    group: 
+    - :default
+  hpricot: 
+    version: ">= 0"
+    group: 
+    - :default
+  cucumber: 
+    version: ">= 0"
+    group: 
+    - :default
