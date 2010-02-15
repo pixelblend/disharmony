@@ -1,4 +1,5 @@
-Dir["vendor/*/lib"].each { |path| $:.unshift path } 
+require 'bundler'
+Bundler.setup
 
 require 'sinatra'
 require 'web'
