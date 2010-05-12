@@ -20,3 +20,7 @@ Then /^I should have the mp3 broadcast$/ do
   @show = @leecher.download
   assert_equal 'downloaded', @show.status
 end
+
+Then /^I should have a combined mp3 broadcast$/ do
+  assert_not_nil @show.mp3
+end

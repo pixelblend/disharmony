@@ -13,3 +13,10 @@ include Test::Unit::Assertions
 
 #migrate, clear old data
 Disharmony::Show.auto_migrate!
+
+#create temp directories
+FileUtils.mkdir_p File.join(ROOT, 'tmp', 'test', 'public', 'shows')
+
+at_exit do
+  #remove tmp directories
+end
