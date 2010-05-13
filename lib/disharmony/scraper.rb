@@ -27,7 +27,7 @@ class Disharmony::Scraper
     return false unless date.is_a?(Date)
     
     year  = date.strftime('%Y')
-    month = date.strftime('%m').downcase
+    month = date.strftime('%B').downcase
     
     self.connect("/#{year}/#{month}-#{year}.feed")
     self.posted_shows
@@ -61,9 +61,6 @@ class Disharmony::Scraper
   end
   
   def extract_show_information(post) 
-    # debugger
-    post_body = post.search('description').first.content.gsub(']]>', '').gsub(/<\/?[^>]*>/, "").strip
-    
     show_date  = Date.parse post.search('pubdate').first.content
     show_title = show_date.strftime('%d %B %Y')
     

@@ -7,6 +7,9 @@ require 'rubygems'
 require 'ruby-debug'
 Dir[File.join(ROOT, "vendor/*/lib")].each { |path| $:.unshift path } 
 
+require 'bundler'
+Bundler.setup
+
 require File.join(ROOT, 'lib', 'disharmony')
 
 Disharmony::Logger = Logger.new(STDOUT)

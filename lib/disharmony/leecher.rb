@@ -17,16 +17,15 @@ class Disharmony::Leecher
   
   def download
     # write zip to temp directory
-    file_name = self.show.title.downcase.gsub(' ', '_').gsub(/[^\w\d]/, '')
+    file_name      = self.show.air_date.strftime('himh_%Y-%m-%d')
     self.file_path = File.join(File.dirname(__FILE__), '..', '..')
-    
     self.zip_path = File.join(self.file_path, 'tmp', file_name+'.zip')
     self.mp3_path = File.join(self.file_path, 'public',  'shows', file_name+'.mp3')
 
     if self.show.multipart?
       # download each part of the archive
       show.mp3.split('|').each_with_index do |part, count|
-        tmp_file = File.join(self.file_path, 'tmp', "#{file_name}#{count}.mp3")
+        tmp_file = File.join(self.file_path, 'tmp', "#{file_name}_#{count}.mp3")
         get_and_extract(part, tmp_file)
       end
       
@@ -34,6 +33,7 @@ class Disharmony::Leecher
       mp3_parts = File.join(self.file_path, 'tmp', "#{file_name}*.mp3")
       
       #due to memory concerns, we're backtickin' on the shell again
+      #should take a look at http://matthewkwilliams.com/index.php/2008/09/10/cat-on-steroids/
       %x{cat #{mp3_parts} > #{mp3_path}}
       
       Dir[mp3_parts].each do |part|

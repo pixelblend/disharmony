@@ -5,6 +5,7 @@ ENV['RACK_ENV'] = 'production'
 
 require 'rubygems'
 require 'ruby-debug'
+
 require 'bundler'
 Bundler.setup
 
