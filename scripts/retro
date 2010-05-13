@@ -4,8 +4,6 @@ ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 ENV['RACK_ENV'] = 'production'
 
 require 'rubygems'
-require 'ruby-debug'
-
 require 'bundler'
 Bundler.setup
 
