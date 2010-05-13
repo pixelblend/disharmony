@@ -1,8 +1,7 @@
 require 'net/http'
 require 'uri'
-require 'hpricot'
+require 'nokogiri'
 require 'htmlentities'
-require 'chronic'
 
 class Disharmony::Scraper
   attr_accessor :coder, :data, :net, :response, :html
@@ -16,13 +15,12 @@ class Disharmony::Scraper
   end
   
   def latest
-    self.connect("/#{Date.today.year}/")
+    self.connect("/.feed")
     self.latest_show
   end
   
   def recent
-    self.connect("/#{Date.today.year}/")
-    self.posted_shows
+    self.for_date(Date.today)    
   end
   
   def for_date(date)
@@ -31,10 +29,8 @@ class Disharmony::Scraper
     year  = date.strftime('%Y')
     month = date.strftime('%m')
     
-    #little url glitch for older shows
-    archive = '/archive' if date.year >= 2008
-    
-    self.connect("/#{year}#{archive}/#{year}_#{month}_01_archive.html")
+    # /2010/may-2010.feed?type=rss
+    self.connect("/#{year}/#{month}-#{year}.feed")
     self.posted_shows
   end
   
@@ -43,31 +39,20 @@ class Disharmony::Scraper
     Disharmony::Logger.info "connecting to #{path}" 
 
     self.response, self.data = self.net.get(path, nil)
-    self.html = Hpricot(self.data)
+    self.html = Nokogiri::HTML(self.data)
   end
   
   def posted_shows
-    self.scan_for_shows "h2[@class='date-header'], div[@class='post']"
+    self.scan_for_shows "item"
   end
   
   def latest_show
-    self.scan_for_shows "h2[@class='date-header']:first, div[@class='post']:first"
+    self.scan_for_shows "item:first"
   end
   
   def scan_for_shows(selector)
-    elements = self.html.search(selector)
-    midpoint = elements.count/2-1
-    
-    #first set of elements are the titles
-    titles  = elements[0..(midpoint)].to_a
-    
-    #and the second set are the posts
-    posts = elements[(midpoint+1)..(elements.count-1)].to_a
-    
-    Disharmony::Logger.info "#{midpoint} posts found"
-    
-    0.upto(midpoint).collect do |x|
-      attributes = self.extract_show_information(posts[x], titles[x])
+    self.html.search(selector).collect do |post|
+      attributes = self.extract_show_information(post)
       
       show   = Disharmony::Show.find_scraped(attributes[:title])
       show ||= Disharmony::Show.new(attributes)
@@ -76,35 +61,37 @@ class Disharmony::Scraper
     end.compact
   end
   
-  def extract_show_information(post, title) 
-    post_body = post.search('div.post-body').first.inner_html.gsub('<br />', "\n").gsub(/<\/?[^>]*>/, "").strip
+  def extract_show_information(post) 
+    # debugger
+    post_body = post.search('description').first.content.gsub(']]>', '').gsub(/<\/?[^>]*>/, "").strip
     
-    if post_body.match(/(Track List:)/i).nil?
-      # no track list; just set blog post as listing. usually a pledge-drive show
-      track_list = post_body
-    else
-      track_list = post_body.split(/(Track List:)/i)[2].strip
-    end
-    
-    show_title = title.inner_html.strip.split(', ')[1..3].join(' ')
-    show_date = Chronic.parse show_title
+    show_date  = Date.parse post.search('pubdate').first.content
+    show_title = show_date.strftime('%d %B %Y')
     
     Disharmony::Logger.info "Scraping info for #{show_title}"
     
     show_info = Hash.new
     
     show_info[:title]      = show_title
+    show_info[:track_list] = extract_track_list_from_post(post)
     show_info[:mp3]        = extract_zips_from_post(post)
-    show_info[:track_list] = self.coder.decode track_list
     show_info[:air_date]   = show_date
     
     show_info
   end
   
+  def extract_track_list_from_post(post)
+    track_list = post.search('description').first.search('div').children.collect do |txt|
+      txt.content if txt.text?
+    end.compact.join("\n")
+    
+    self.coder.decode track_list
+  end  
+  
   def extract_zips_from_post(post)
     show_zips = Array.new
 
-    post.search('div.post-body a').collect do |link|
+    post.search('description').first.children.search('a').collect do |link|
       show_zips << link[:href] if link[:href].include?('.zip')
     end
     

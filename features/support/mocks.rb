@@ -16,7 +16,7 @@ def stub_archive(file)
 end
 
 def stub_scraped_page(file)
-  Net::HTTP.any_instance.stubs(:get).returns(['', File.read(mocks_path("#{file}.html"))])
+  Net::HTTP.any_instance.stubs(:get).returns(['', File.read(mocks_path("#{file}.xml"))])
 end
 
 def stub_show(new_attributes={})

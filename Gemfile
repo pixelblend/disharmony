@@ -1,7 +1,6 @@
 source :gemcutter
 
 gem "sinatra"
-gem "hpricot"
 gem "nokogiri"
 gem "sqlite3-ruby", :require => "sqlite3"
 gem 'data_objects',      '~> 0.10.1'
@@ -15,7 +14,7 @@ gem "rubyzip"
 gem "chronic"
 gem "htmlentities"
 
-gem "cucumber"
+gem "cucumber",           '0.6'
 gem "ruby-debug"
 gem "mocha"
 

@@ -34,7 +34,7 @@ class Disharmony::Leecher
       mp3_parts = File.join(self.file_path, 'tmp', "#{file_name}*.mp3")
       
       #due to memory concerns, we're backtickin' on the shell again
-      `cat #{mp3_parts} > #{mp3_path}`
+      %x{cat #{mp3_parts} > #{mp3_path}}
       
       Dir[mp3_parts].each do |part|
         File.unlink(part)
@@ -57,7 +57,7 @@ class Disharmony::Leecher
   end
   
   def wget(url, output)
-    `wget #{url} --output-document=#{output}`
+    %x{get #{url} --output-document=#{output}}
   end
   
   def extract_zip!(destination)
