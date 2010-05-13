@@ -174,9 +174,9 @@ end
 module Bundler
   ENV_LOADED   = true
   LOCKED_BY    = '0.9.25'
-  FINGERPRINT  = "29fd7f1e43ebaacaf7ad28882d8f2c751e58882c"
+  FINGERPRINT  = "fad34fa35dc7e3a46a3f8dad87734d411eaee8fb"
   HOME         = '/Users/dnutta01/.bundle/ruby/1.8/bundler'
-  AUTOREQUIRES = {:default=>[["chronic", false], ["cucumber", false], ["data_objects", false], ["dm-core", false], ["dm-aggregates", false], ["dm-types", false], ["dm-validations", false], ["do_sqlite3", false], ["hpricot", false], ["htmlentities", false], ["id3lib-ruby", false], ["mocha", false], ["nokogiri", false], ["ruby-debug", false], ["rubyzip", false], ["sinatra", false], ["sqlite3", true]]}
+  AUTOREQUIRES = {:default=>[["chronic", false], ["cucumber", false], ["data_objects", false], ["dm-core", false], ["dm-aggregates", false], ["dm-types", false], ["dm-validations", false], ["do_sqlite3", false], ["htmlentities", false], ["id3lib-ruby", false], ["mocha", false], ["nokogiri", false], ["ruby-debug", false], ["rubyzip", false], ["sinatra", false], ["sqlite3", true]]}
   SPECS        = [
         {:loaded_from=>"/usr/local/lib/ruby/gems/1.8/specifications/rake-0.8.7.gemspec", :name=>"rake", :load_paths=>["/usr/local/lib/ruby/gems/1.8/gems/rake-0.8.7/lib"]},
         {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/addressable-2.1.2.gemspec", :name=>"addressable", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/addressable-2.1.2/lib"]},
@@ -202,7 +202,6 @@ module Bundler
         {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/dm-types-0.10.2.gemspec", :name=>"dm-types", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/dm-types-0.10.2/lib"]},
         {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/dm-validations-0.10.2.gemspec", :name=>"dm-validations", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/dm-validations-0.10.2/lib"]},
         {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/do_sqlite3-0.10.1.1.gemspec", :name=>"do_sqlite3", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/do_sqlite3-0.10.1.1/lib"]},
-        {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/hpricot-0.8.2.gemspec", :name=>"hpricot", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/hpricot-0.8.2/lib"]},
         {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/htmlentities-4.2.1.gemspec", :name=>"htmlentities", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/htmlentities-4.2.1/lib"]},
         {:loaded_from=>"/usr/local/lib/ruby/gems/1.8/specifications/id3lib-ruby-0.5.0.gemspec", :name=>"id3lib-ruby", :load_paths=>["/usr/local/lib/ruby/gems/1.8/gems/id3lib-ruby-0.5.0/lib"]},
         {:loaded_from=>"/usr/local/lib/ruby/gems/1.8/specifications/linecache-0.43.gemspec", :name=>"linecache", :load_paths=>["/usr/local/lib/ruby/gems/1.8/gems/linecache-0.43/lib"]},

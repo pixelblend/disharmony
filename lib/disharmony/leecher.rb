@@ -57,7 +57,7 @@ class Disharmony::Leecher
   end
   
   def wget(url, output)
-    %x{get #{url} --output-document=#{output}}
+    %x{wget #{url} --output-document=#{output}}
   end
   
   def extract_zip!(destination)

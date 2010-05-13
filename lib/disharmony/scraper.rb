@@ -27,9 +27,8 @@ class Disharmony::Scraper
     return false unless date.is_a?(Date)
     
     year  = date.strftime('%Y')
-    month = date.strftime('%m')
+    month = date.strftime('%m').downcase
     
-    # /2010/may-2010.feed?type=rss
     self.connect("/#{year}/#{month}-#{year}.feed")
     self.posted_shows
   end
@@ -81,10 +80,10 @@ class Disharmony::Scraper
   end
   
   def extract_track_list_from_post(post)
-    track_list = post.search('description').first.search('div').children.collect do |txt|
-      txt.content if txt.text?
+    track_list = post.search('description *').children.collect do |txt|
+      next unless txt.text?
+      next txt.content.strip unless txt.content.strip.match(/^(\d){1,2}\./).nil?
     end.compact.join("\n")
-    
     self.coder.decode track_list
   end  
   
