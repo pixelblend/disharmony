@@ -11,8 +11,10 @@ gem 'dm-validations',    '~> 0.10.2'
 gem 'dm-aggregates',     '~> 0.10.2'
 gem "data_objects"
 gem "rubyzip"
-gem "chronic"
+gem 'bcrypt-ruby', '2.1.2', :require => 'bcrypt'
 gem "htmlentities"
+
+
 
 gem "cucumber",           '0.6'
 gem "ruby-debug"

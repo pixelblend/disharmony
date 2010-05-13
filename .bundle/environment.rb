@@ -174,20 +174,17 @@ end
 module Bundler
   ENV_LOADED   = true
   LOCKED_BY    = '0.9.25'
-  FINGERPRINT  = "fad34fa35dc7e3a46a3f8dad87734d411eaee8fb"
+  FINGERPRINT  = "20920266450fa9c74a491bb39897162ce380d894"
   HOME         = '/Users/dnutta01/.bundle/ruby/1.8/bundler'
-  AUTOREQUIRES = {:default=>[["chronic", false], ["cucumber", false], ["data_objects", false], ["dm-core", false], ["dm-aggregates", false], ["dm-types", false], ["dm-validations", false], ["do_sqlite3", false], ["htmlentities", false], ["id3lib-ruby", false], ["mocha", false], ["nokogiri", false], ["ruby-debug", false], ["rubyzip", false], ["sinatra", false], ["sqlite3", true]]}
+  AUTOREQUIRES = {:default=>[["bcrypt", true], ["cucumber", false], ["data_objects", false], ["dm-core", false], ["dm-aggregates", false], ["dm-types", false], ["dm-validations", false], ["do_sqlite3", false], ["htmlentities", false], ["id3lib-ruby", false], ["mocha", false], ["nokogiri", false], ["ruby-debug", false], ["rubyzip", false], ["sinatra", false], ["sqlite3", true]]}
   SPECS        = [
         {:loaded_from=>"/usr/local/lib/ruby/gems/1.8/specifications/rake-0.8.7.gemspec", :name=>"rake", :load_paths=>["/usr/local/lib/ruby/gems/1.8/gems/rake-0.8.7/lib"]},
         {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/addressable-2.1.2.gemspec", :name=>"addressable", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/addressable-2.1.2/lib"]},
         {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/bcrypt-ruby-2.1.2.gemspec", :name=>"bcrypt-ruby", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/bcrypt-ruby-2.1.2/lib"]},
         {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/builder-2.1.2.gemspec", :name=>"builder", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/builder-2.1.2/lib"]},
-        {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/json_pure-1.2.4.gemspec", :name=>"json_pure", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/json_pure-1.2.4/lib"]},
-        {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/rubyforge-2.0.4.gemspec", :name=>"rubyforge", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/rubyforge-2.0.4/lib"]},
-        {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/hoe-2.6.0.gemspec", :name=>"hoe", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/hoe-2.6.0/lib"]},
-        {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/chronic-0.2.3.gemspec", :name=>"chronic", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/chronic-0.2.3/lib"]},
         {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/columnize-0.3.1.gemspec", :name=>"columnize", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/columnize-0.3.1/lib"]},
         {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/diff-lcs-1.1.2.gemspec", :name=>"diff-lcs", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/diff-lcs-1.1.2/lib"]},
+        {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/json_pure-1.2.4.gemspec", :name=>"json_pure", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/json_pure-1.2.4/lib"]},
         {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/polyglot-0.3.1.gemspec", :name=>"polyglot", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/polyglot-0.3.1/lib"]},
         {:loaded_from=>"/usr/local/lib/ruby/gems/1.8/specifications/term-ansicolor-1.0.5.gemspec", :name=>"term-ansicolor", :load_paths=>["/usr/local/lib/ruby/gems/1.8/gems/term-ansicolor-1.0.5/lib"]},
         {:loaded_from=>"/Users/dnutta01/.bundle/ruby/1.8/specifications/treetop-1.4.5.gemspec", :name=>"treetop", :load_paths=>["/Users/dnutta01/.bundle/ruby/1.8/gems/treetop-1.4.5/lib"]},

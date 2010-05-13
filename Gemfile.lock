@@ -8,18 +8,12 @@ specs:
     version: 2.1.2
 - builder: 
     version: 2.1.2
-- json_pure: 
-    version: 1.2.4
-- rubyforge: 
-    version: 2.0.4
-- hoe: 
-    version: 2.6.0
-- chronic: 
-    version: 0.2.3
 - columnize: 
     version: 0.3.1
 - diff-lcs: 
     version: 1.1.2
+- json_pure: 
+    version: 1.2.4
 - polyglot: 
     version: 0.3.1
 - term-ansicolor: 
@@ -70,7 +64,7 @@ specs:
     version: "1.0"
 - sqlite3-ruby: 
     version: 1.2.5
-hash: fad34fa35dc7e3a46a3f8dad87734d411eaee8fb
+hash: 20920266450fa9c74a491bb39897162ce380d894
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
@@ -129,12 +123,14 @@ dependencies:
     version: ~> 0.10.2
     group: 
     - :default
-  chronic: 
-    version: ">= 0"
-    group: 
-    - :default
   do_sqlite3: 
     version: ~> 0.10.1
+    group: 
+    - :default
+  bcrypt-ruby: 
+    version: = 2.1.2
+    require: 
+    - bcrypt
     group: 
     - :default
   cucumber: 
