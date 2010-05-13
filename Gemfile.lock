@@ -1,66 +1,78 @@
 --- 
 specs: 
-- term-ansicolor: 
-    version: 1.0.4
+- rake: 
+    version: 0.8.7
+- addressable: 
+    version: 2.1.2
+- bcrypt-ruby: 
+    version: 2.1.2
 - builder: 
     version: 2.1.2
-- hpricot: 
-    version: 0.8.2
 - json_pure: 
-    version: 1.2.0
-- extlib: 
-    version: 0.9.14
-- linecache: 
-    version: "0.43"
+    version: 1.2.4
+- rubyforge: 
+    version: 2.0.4
+- hoe: 
+    version: 2.6.0
 - chronic: 
     version: 0.2.3
-- rack: 
-    version: 1.1.0
-- htmlentities: 
-    version: 4.2.0
-- id3lib-ruby: 
-    version: 0.5.0
-- sinatra: 
-    version: 0.9.4
-- polyglot: 
-    version: 0.3.0
+- columnize: 
+    version: 0.3.1
+- diff-lcs: 
+    version: 1.1.2
+- trollop: 
+    version: 1.16.2
+- gherkin: 
+    version: 1.0.26
+- term-ansicolor: 
+    version: 1.0.5
+- cucumber: 
+    version: 0.7.2
+- data_objects: 
+    version: 0.10.1
+- extlib: 
+    version: 0.9.14
 - dm-core: 
     version: 0.10.2
 - dm-aggregates: 
     version: 0.10.2
+- fastercsv: 
+    version: 1.5.3
+- stringex: 
+    version: 1.1.0
+- uuidtools: 
+    version: 2.1.1
+- dm-types: 
+    version: 0.10.2
 - dm-validations: 
     version: 0.10.2
-- rake: 
-    version: 0.8.7
-- mocha: 
-    version: 0.9.8
-- gemcutter: 
-    version: 0.3.0
-- addressable: 
-    version: 2.1.1
-- diff-lcs: 
-    version: 1.1.2
-- data_objects: 
-    version: 0.10.1
 - do_sqlite3: 
     version: 0.10.1.1
-- rubyforge: 
-    version: 2.0.3
-- hoe: 
-    version: 2.5.0
-- treetop: 
-    version: 1.4.3
-- cucumber: 
-    version: 0.6.2
-- columnize: 
-    version: 0.3.1
+- hpricot: 
+    version: 0.8.2
+- htmlentities: 
+    version: 4.2.1
+- id3lib-ruby: 
+    version: 0.5.0
+- linecache: 
+    version: "0.43"
+- mocha: 
+    version: 0.9.8
+- nokogiri: 
+    version: 1.4.1
+- rack: 
+    version: 1.1.0
 - ruby-debug-base: 
+    version: 0.10.3
+- ruby-debug: 
     version: 0.10.3
 - rubyzip: 
     version: 0.9.4
-- ruby-debug: 
-    version: 0.10.3
-hash: 545e9b8284164c678f2ce9d765f6712e72206e31
+- sinatra: 
+    version: "1.0"
+- sqlite3-ruby: 
+    version: 1.2.5
+hash: 8136feeeda5fa533af048565aec2d70d83faf88e
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
@@ -73,23 +85,29 @@ dependencies:
     version: ">= 0"
     group: 
     - :default
+  sqlite3-ruby: 
+    version: ">= 0"
+    require: 
+    - sqlite3
+    group: 
+    - :default
+  nokogiri: 
+    version: ">= 0"
+    group: 
+    - :default
   data_objects: 
     version: ">= 0"
     group: 
     - :default
-  dm-core: 
-    version: ">= 0"
+  dm-types: 
+    version: ~> 0.10.2
     group: 
     - :default
-  mocha: 
-    version: ">= 0"
+  dm-core: 
+    version: ~> 0.10.2
     group: 
     - :default
   id3lib-ruby: 
-    version: ">= 0"
-    group: 
-    - :default
-  dm-validations: 
     version: ">= 0"
     group: 
     - :default
@@ -97,20 +115,28 @@ dependencies:
     version: ">= 0"
     group: 
     - :default
+  dm-validations: 
+    version: ~> 0.10.2
+    group: 
+    - :default
+  mocha: 
+    version: ">= 0"
+    group: 
+    - :default
   htmlentities: 
     version: ">= 0"
+    group: 
+    - :default
+  dm-aggregates: 
+    version: ~> 0.10.2
     group: 
     - :default
   chronic: 
     version: ">= 0"
     group: 
     - :default
-  dm-aggregates: 
-    version: ">= 0"
-    group: 
-    - :default
   do_sqlite3: 
-    version: ">= 0"
+    version: ~> 0.10.1
     group: 
     - :default
   hpricot: 

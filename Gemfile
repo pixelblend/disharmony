@@ -1,10 +1,8 @@
-source 'http://rubygems.org'
-
-git 'git://github.com/carlhuda/bundler.git'
-#source :gemcutter
+source :gemcutter
 
 gem "sinatra"
 gem "hpricot"
+gem "nokogiri"
 gem "sqlite3-ruby", :require => "sqlite3"
 gem 'data_objects',      '~> 0.10.1'
 gem 'do_sqlite3',        '~> 0.10.1'
