@@ -62,7 +62,7 @@ class Disharmony::Scraper
   
   def extract_show_information(post) 
     show_date  = Date.parse post.search('pubdate').first.content
-    show_title = show_date.strftime('%d %B %Y')
+    show_title = show_date.strftime('%B %d %Y')
     
     Disharmony::Logger.info "Scraping info for #{show_title}"
     
