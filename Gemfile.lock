@@ -1,0 +1,139 @@
+--- 
+dependencies: 
+  ruby-debug: 
+    group: 
+    - :default
+    version: ">= 0"
+  sqlite3-ruby: 
+    group: 
+    - :default
+    version: ">= 0"
+    require: 
+    - sqlite3
+  data_objects: 
+    group: 
+    - :default
+    version: ">= 0"
+  dm-validations: 
+    group: 
+    - :default
+    version: ~> 0.10.2
+  dm-types: 
+    group: 
+    - :default
+    version: ~> 0.10.2
+  dm-aggregates: 
+    group: 
+    - :default
+    version: ~> 0.10.2
+  htmlentities: 
+    group: 
+    - :default
+    version: ">= 0"
+  dm-core: 
+    group: 
+    - :default
+    version: ~> 0.10.2
+  id3lib-ruby: 
+    group: 
+    - :default
+    version: ">= 0"
+  sinatra: 
+    group: 
+    - :default
+    version: ">= 0"
+  mocha: 
+    group: 
+    - :default
+    version: ">= 0"
+  bcrypt-ruby: 
+    group: 
+    - :default
+    version: = 2.1.2
+    require: 
+    - bcrypt
+  cucumber: 
+    group: 
+    - :default
+    version: = 0.6
+  rubyzip: 
+    group: 
+    - :default
+    version: ">= 0"
+  do_sqlite3: 
+    group: 
+    - :default
+    version: ~> 0.10.1
+  nokogiri: 
+    group: 
+    - :default
+    version: ">= 0"
+specs: 
+- rake: 
+    version: 0.8.7
+- addressable: 
+    version: 2.1.2
+- bcrypt-ruby: 
+    version: 2.1.2
+- builder: 
+    version: 2.1.2
+- columnize: 
+    version: 0.3.1
+- diff-lcs: 
+    version: 1.1.2
+- json_pure: 
+    version: 1.2.4
+- polyglot: 
+    version: 0.3.1
+- term-ansicolor: 
+    version: 1.0.5
+- treetop: 
+    version: 1.4.8
+- cucumber: 
+    version: 0.6.0
+- data_objects: 
+    version: 0.10.2
+- extlib: 
+    version: 0.9.15
+- dm-core: 
+    version: 0.10.2
+- dm-aggregates: 
+    version: 0.10.2
+- fastercsv: 
+    version: 1.5.3
+- stringex: 
+    version: 1.1.0
+- uuidtools: 
+    version: 2.1.1
+- dm-types: 
+    version: 0.10.2
+- dm-validations: 
+    version: 0.10.2
+- do_sqlite3: 
+    version: 0.10.2
+- htmlentities: 
+    version: 4.2.1
+- id3lib-ruby: 
+    version: 0.6.0
+- linecache: 
+    version: "0.43"
+- mocha: 
+    version: 0.9.8
+- nokogiri: 
+    version: 1.4.2
+- rack: 
+    version: 1.1.0
+- ruby-debug-base: 
+    version: 0.10.3
+- ruby-debug: 
+    version: 0.10.3
+- rubyzip: 
+    version: 0.9.4
+- sinatra: 
+    version: "1.0"
+- sqlite3-ruby: 
+    version: 1.2.5
+hash: 20920266450fa9c74a491bb39897162ce380d894
+sources: 
+- Rubygems: 
+    uri: http://gemcutter.org
