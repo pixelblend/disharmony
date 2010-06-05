@@ -58,8 +58,13 @@ class Disharmony::Leecher
   
   def wget(url, output)
     %x{wget #{url} --output-document=#{output}}
+  rescue SystemExit, Interrupt
+    #remove temp file
+    Disharmony::Logger.info "Halt recieved, deleting temporary files..."
+    File.unlink(output)
+    raise
   end
-  
+
   def extract_zip!(destination)
     Disharmony::Logger.info 'Extracting zip'
     begin
