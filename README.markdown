@@ -1,7 +1,7 @@
 Disharmony - A Rollins Archive Podcasting server
 ================================================
 
-Henry Rollins' Harmony in My Head is one of the best music shows on the radio. RollinsArchive.com do a great job putting each show online but they don't do it in an Podcasting-friendly way.
+Henry Rollins' Harmony in My Head is one of the best music shows on the radio. Rollins-Archive.com do a great job putting each show online but they don't do it in an Podcasting-friendly way.
 
 This little sinatra app scrapes, downloads, tags & posts in an RSS feed each time a new show is put online.
 

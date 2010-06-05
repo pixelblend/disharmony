@@ -1,12 +1,13 @@
-require 'bundler'
-Bundler.setup
+begin
+  require File.join(File.dirname(__FILE__), '.bundle', 'environment')
+rescue Exception => e
+  raise 'Unpack gems with `bundle package` or rack will give you pain :('
+end
 
 require 'sinatra'
 require 'web'
 
-Sinatra::Application.default_options.merge!(
-  :run => false,
-  :env => ENV['RACK_ENV']
-)
+set :run, false
+set :env, ENV['RACK_ENV']
 
 run Sinatra::Application
