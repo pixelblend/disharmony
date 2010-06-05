@@ -11,4 +11,5 @@ require File.join(ROOT, 'lib', 'disharmony')
 
 Disharmony::Logger = Logger.new(STDOUT)
 
+# downloads all new shows released in the current month
 Disharmony.new.download_recent

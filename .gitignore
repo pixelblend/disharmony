@@ -7,3 +7,4 @@ log/*.log
 vendor/bundler_gems
 vendor/cache
 .bundle
+*.swp

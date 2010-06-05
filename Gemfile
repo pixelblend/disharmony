@@ -13,7 +13,7 @@ gem "data_objects"
 gem "rubyzip"
 gem 'bcrypt-ruby', '2.1.2', :require => 'bcrypt'
 gem "htmlentities"
-
+gem "chronic"
 
 
 gem "cucumber",           '0.6'

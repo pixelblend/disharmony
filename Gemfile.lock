@@ -4,20 +4,20 @@ dependencies:
     group: 
     - :default
     version: ">= 0"
+  dm-validations: 
+    group: 
+    - :default
+    version: ~> 0.10.2
+  data_objects: 
+    group: 
+    - :default
+    version: ">= 0"
   sqlite3-ruby: 
     group: 
     - :default
     version: ">= 0"
     require: 
     - sqlite3
-  data_objects: 
-    group: 
-    - :default
-    version: ">= 0"
-  dm-validations: 
-    group: 
-    - :default
-    version: ~> 0.10.2
   dm-types: 
     group: 
     - :default
@@ -26,14 +26,14 @@ dependencies:
     group: 
     - :default
     version: ~> 0.10.2
-  htmlentities: 
-    group: 
-    - :default
-    version: ">= 0"
   dm-core: 
     group: 
     - :default
     version: ~> 0.10.2
+  htmlentities: 
+    group: 
+    - :default
+    version: ">= 0"
   id3lib-ruby: 
     group: 
     - :default
@@ -52,6 +52,10 @@ dependencies:
     version: = 2.1.2
     require: 
     - bcrypt
+  chronic: 
+    group: 
+    - :default
+    version: ">= 0"
   cucumber: 
     group: 
     - :default
@@ -60,14 +64,14 @@ dependencies:
     group: 
     - :default
     version: ">= 0"
-  do_sqlite3: 
-    group: 
-    - :default
-    version: ~> 0.10.1
   nokogiri: 
     group: 
     - :default
     version: ">= 0"
+  do_sqlite3: 
+    group: 
+    - :default
+    version: ~> 0.10.1
 specs: 
 - rake: 
     version: 0.8.7
@@ -77,12 +81,18 @@ specs:
     version: 2.1.2
 - builder: 
     version: 2.1.2
+- json_pure: 
+    version: 1.2.4
+- rubyforge: 
+    version: 2.0.4
+- hoe: 
+    version: 2.6.0
+- chronic: 
+    version: 0.2.3
 - columnize: 
     version: 0.3.1
 - diff-lcs: 
     version: 1.1.2
-- json_pure: 
-    version: 1.2.4
 - polyglot: 
     version: 0.3.1
 - term-ansicolor: 
@@ -133,7 +143,7 @@ specs:
     version: "1.0"
 - sqlite3-ruby: 
     version: 1.2.5
-hash: 20920266450fa9c74a491bb39897162ce380d894
+hash: ca05c725659d23910419da1cc8537ebb186eb8d5
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org

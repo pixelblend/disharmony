@@ -1,17 +1,14 @@
 #!/usr/bin/env ruby
-
 ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..'))
-ENV['RACK_ENV'] = 'test'
+ENV['RACK_ENV'] = 'script'
 
 require 'rubygems'
-require 'ruby-debug'
-Dir[File.join(ROOT, "vendor/*/lib")].each { |path| $:.unshift path } 
-
 require 'bundler'
+require 'ruby-debug'
 Bundler.setup
 
 require File.join(ROOT, 'lib', 'disharmony')
 
-Disharmony::Logger = Logger.new(STDOUT)
+#stupid-simple approximation of a irb-like console using ruby-debug
 debugger
 1+1

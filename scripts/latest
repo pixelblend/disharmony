@@ -4,16 +4,12 @@ ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 ENV['RACK_ENV'] = 'production'
 
 require 'rubygems'
-require 'ruby-debug'
-
 require 'bundler'
 Bundler.setup
-
-
-Dir[File.join(ROOT, "vendor/*/lib")].each { |path| $:.unshift path } 
 
 require File.join(ROOT, 'lib', 'disharmony')
 
 Disharmony::Logger = Logger.new(STDOUT)
 
+#downloads the 1 most recent show only
 Disharmony.new.download_latest

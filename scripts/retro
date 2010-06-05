@@ -1,18 +1,31 @@
 #!/usr/bin/env ruby
 
 ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..'))
-ENV['RACK_ENV'] = 'production'
+ENV['RACK_ENV'] = 'script'
 
 require 'rubygems'
 require 'bundler'
 Bundler.setup
 
-Dir[File.join(ROOT, "vendor/*/lib")].each { |path| $:.unshift path } 
-
 require File.join(ROOT, 'lib', 'disharmony')
+require 'chronic'
 
-Disharmony::Logger = Logger.new(STDOUT)
+# downloads all shows broadcast during the given month
 
-date = Date.new(2007,1)
+date_input = ARGV.join(' ') # allow any number of arguments to be entered as to allow a natural date statement
+
+if date_input.empty?
+	puts %Q{Downloads shows for a given month, expressed in a way Chronic will understand.\nExamples:\n./scripts/retro July 2009\n./scripts/retro last month}
+	exit
+end
+
+time = Chronic.parse(date_input, {:context => :past})
+
+if time.nil?
+	puts %Q{Requested date "#{date_input}" could not be turned into a recognisable date.}
+	exit
+end
+
+date = Date.parse(time.strftime('%Y/%m/%d')) # god bless ruby's lack of .to_date method
 
 Disharmony.new.download_for_date(date)
