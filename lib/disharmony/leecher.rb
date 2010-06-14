@@ -71,6 +71,7 @@ class Disharmony::Leecher
       Zip::ZipFile.open(zip_path) do |zip_file|
         zip_file.each do |entry|
           if file_is_show?(entry.name)
+            Disharmony::Logger.info "Extracting #{entry.name} from zip"
             zip_file.extract(entry, destination)
           end
         end
