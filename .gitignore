@@ -8,3 +8,4 @@ vendor/bundler_gems
 vendor/cache
 .bundle
 *.swp
+tags
