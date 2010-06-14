@@ -83,6 +83,7 @@ class Disharmony::Leecher
   end
 
   def file_is_show?(file_name)
+    # any non-hidden file ending in .mp3 should be what we're after
     !(file_name =~ /^[^\._]+(.*).mp3$/).nil?
   end
 end
