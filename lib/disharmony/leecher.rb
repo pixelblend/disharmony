@@ -70,7 +70,7 @@ class Disharmony::Leecher
     begin
       Zip::ZipFile.open(zip_path) do |zip_file|
         zip_file.each do |entry|
-          unless (entry.name =~ /^[a-zA-Z0-9]+(.*).mp3$/).nil?
+          if file_is_show?(entry.name)
             zip_file.extract(entry, destination)
           end
         end
@@ -80,5 +80,9 @@ class Disharmony::Leecher
     ensure
       File.unlink(zip_path)
     end
+  end
+
+  def file_is_show?(file_name)
+    !(file_name =~ /^[^\._]+(.*).mp3$/).nil?
   end
 end

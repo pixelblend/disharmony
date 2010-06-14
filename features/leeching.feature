@@ -14,3 +14,8 @@ Feature: File Downloading
     Given I download a show with a multiple zip archive
     When I extract the zip archive
     Then I should have a combined mp3 broadcast
+  
+  Scenario: Tricky zip archive
+    Given I download a show with a tricky zip archive
+    When I extract the zip archive
+    Then I should have only the correct mp3 file left
