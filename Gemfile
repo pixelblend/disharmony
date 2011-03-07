@@ -9,7 +9,6 @@ gem 'dm-core',           '~> 0.10.2'
 gem 'dm-types',          '~> 0.10.2'
 gem 'dm-validations',    '~> 0.10.2'
 gem 'dm-aggregates',     '~> 0.10.2'
-gem "data_objects"
 gem "rubyzip"
 gem 'bcrypt-ruby', '2.1.2', :require => 'bcrypt'
 gem "htmlentities"
