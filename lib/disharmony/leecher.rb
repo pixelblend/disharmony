@@ -16,13 +16,17 @@ class Disharmony::Leecher
   end
   
   def download
-    # write zip to temp directory
     file_name      = self.show.air_date.strftime('himh_%Y-%m-%d')
+
     self.file_path = File.join(File.dirname(__FILE__), '..', '..')
     self.zip_path = File.join(self.file_path, 'tmp', file_name+'.zip')
     self.mp3_path = File.join(self.file_path, 'public',  'shows', file_name+'.mp3')
 
-    if self.show.multipart?
+    # write zip to temp directory
+    case true
+    when File.exists?(self.mp3_path)
+      # already downloaded, go to tagging
+    when self.show.multipart? 
       # download each part of the archive
       show.mp3.split('|').each_with_index do |part, count|
         tmp_file = File.join(self.file_path, 'tmp', "#{file_name}_#{count}.mp3")
