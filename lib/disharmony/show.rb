@@ -37,6 +37,11 @@ class Disharmony::Show
     self.save
   end
   
+  def mirrored!
+    self.mirrored = true
+    self.save 
+  end
+
   def path
     File.join Disharmony::Config['mp3']['path'], self.mp3
   end
@@ -53,6 +58,7 @@ class Disharmony::Show
   property :track_list, Text
   property :air_date, Time
   property :status, String
+  property :mirrored, Boolean, :default => false
 end
 
 Disharmony::Show.auto_upgrade!

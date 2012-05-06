@@ -1,0 +1,17 @@
+source_host: http://rollins-archive.com
+show_info:
+  artist: Henry Rollins
+  title: Harmony In My Head
+  cover_path: "<%= File.join ROOT, 'public', 'himh.jpg' %>"
+db: "sqlite3://<%= ROOT %>/db/<%= ENV['RACK_ENV'] %>.db"
+mp3:
+  path: "<%= File.join ROOT, 'public', 'shows' %>"
+  url: shows/
+mirror:
+  url: "http://"
+  access: ''
+  secret: ''
+  provider: ''
+  region: ''
+  directory: ''
+

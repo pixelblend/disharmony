@@ -27,6 +27,7 @@ class Disharmony::Mirror
   def post!
     upload_to_s3
     post_to_mirror
+    self.show.mirrored!
   end
 
   private
