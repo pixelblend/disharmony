@@ -38,6 +38,8 @@ class Disharmony
     self.shows = self.shows.collect do |show| 
       show = Leecher.new(show).download
       Tagger.tag!(show)
+      Disharmony::Logger.info("#{show.title} uploading to S3.")
+      Mirror.new(show).post!
       Disharmony::Logger.info("#{show.title} completed.")
     end
   end

@@ -1,3 +1,3 @@
-%w{disharmony config show scraper leecher tagger}.each do |file|
+%w{disharmony config show scraper leecher tagger mirror}.each do |file|
   require File.join(File.dirname(__FILE__), 'disharmony', file)
 end
