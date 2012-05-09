@@ -61,7 +61,7 @@ class Disharmony::Leecher
   end
   
   def wget(url, output)
-    %x{wget #{url} --output-document=#{output}}
+    %x{wget -q #{url} --output-document=#{output}}
   rescue SystemExit, Interrupt
     #remove temp file
     Disharmony::Logger.info "Halt recieved, deleting temporary files..."
