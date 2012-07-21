@@ -15,3 +15,9 @@ Feature: Page scraping
     And I request the latest show
     Then I should create a show
     And with multiple zip files
+
+	Scenario: A post with two sets of tracks
+		When I scrape the two-set page
+		And I request the latest show
+		Then I should create a show
+		And with two sets of track listings

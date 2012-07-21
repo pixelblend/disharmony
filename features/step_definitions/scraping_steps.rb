@@ -20,3 +20,6 @@ Then /^with multiple zip files$/ do
   assert_equal true, @shows.first.multipart?
 end
 
+Then /^with two sets of track listings$/ do
+  assert_equal 23, @shows.first.track_list.split("\n").size
+end
