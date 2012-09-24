@@ -37,7 +37,8 @@ class Disharmony::Scraper
   def connect(path)
     Disharmony::Logger.info "connecting to #{path}" 
 
-    self.response, self.data = self.net.get(path, nil)
+    self.response = self.net.get(path)
+    self.data = self.response.body
     self.html = Nokogiri::HTML(self.data)
   end
   

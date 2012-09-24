@@ -1,11 +1,11 @@
 ENV['RACK_ENV'] = 'test'
 ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
 
-require 'bundler'
-Bundler.setup
+require "rubygems"
+require "bundler/setup"
 
 require 'cucumber/formatter/unicode'
-require 'lib/disharmony'
+require_relative '../../lib/disharmony'
 require 'test/unit'
 require 'ruby-debug'
 require 'mocha'

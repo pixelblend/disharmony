@@ -1,3 +1,4 @@
+require 'data_mapper'
 require 'dm-core'
 require 'dm-validations'
 require 'dm-aggregates'
@@ -6,8 +7,8 @@ DataMapper.setup(:default, Disharmony::Config['db'])
 
 class Disharmony::Show
   include DataMapper::Resource
-  validates_is_unique :title
-  validates_present   :mp3
+  validates_uniqueness_of :title
+  validates_presence_of   :mp3
   
   def self.all_complete
     self.all(:status => :complete, :order => [ :air_date.desc ])

@@ -3,23 +3,17 @@ source 'http://rubygems.org'
 gem 'sinatra'
 gem 'nokogiri',          '~> 1.5.5'
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'data_objects',      '~> 0.10.1'
-gem 'do_sqlite3',        '~> 0.10.1'
-gem 'dm-core',           '~> 0.10.2'
-gem 'dm-types',          '~> 0.10.2'
-gem 'dm-validations',    '~> 0.10.2'
-gem 'dm-aggregates',     '~> 0.10.2'
+gem "datamapper", "~> 1.2.0"
+gem 'dm-sqlite-adapter'
 gem 'rubyzip'
-gem 'bcrypt-ruby', '2.1.2', :require => 'bcrypt'
 gem 'htmlentities'
 gem 'chronic'
 gem 'fog', :git => 'https://github.com/fog/fog.git'
-gem 'rake', '0.8.7'
-
+gem 'rake'
 
 group :test do
-  gem 'cucumber',           '0.6'
-  gem 'ruby-debug'
+  gem 'cucumber', '~> 0.6'
+  gem 'debugger'
   gem 'mocha'
 end
 
