@@ -1,6 +1,7 @@
 require 'net/http'
 require 'fog'
 require 'uri'
+require 'json'
 
 class Disharmony::Mirror
   attr_accessor :attributes, :show, :storage, :net
